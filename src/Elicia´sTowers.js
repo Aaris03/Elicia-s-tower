@@ -35,6 +35,7 @@ function iniciarJuego(){
         }
         
     /* Cambio de escena */ 
+    //cambio
 
     /* Carga falsa */
         function cargaFalsa1(){
