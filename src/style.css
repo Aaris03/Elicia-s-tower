@@ -1,0 +1,71 @@
+body{
+    margin: 0px;
+}
+#pantallaCarga, #escenaInicioJuego{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#escenaInicioJuego{
+    background-image: url(img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#pantallaCarga div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    flex-direction: column;
+}
+.salida{
+    animation-name: fade-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes fade-out{
+    from {opacity: 100%;}
+    to{opacity: 0%;}
+}
+p.center, h1.center{
+    text-align: center;
+}
+.hoverEnemigo{
+    padding: 10px;
+}
+.hoverEnemigo:hover{
+    background-color: aqua;
+}
+.hoverEnemigo:active{
+    background-color: brown;
+}
+#modalSeleccion{
+    background-color: rgba(0,0,0,0.75);
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#seleccionEnemigos{
+    display: flex;
+    z-index: 0;
+}
+.modalConfirmacion{
+    background-color: white;
+}
+#seleccionEnemigo img{
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+#seleccionEnemigos p{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
