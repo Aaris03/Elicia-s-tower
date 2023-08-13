@@ -55,23 +55,29 @@ function iniciarJuego(){
                                         contenedorPantallaCarga.remove();
                                         contenedorBody.appendChild(contenedorEscenaInicial)
                                         cargaLista = true;
+                                        console.log("Ya soy true");
+                                        return cargaLista;
                                     },2000)
                                 },2000)
                             },1500)
                         },1000)
                     },3000)
                 },2500)
-            },2000) 
+            },2000)
         }
     /* Carga falsa */
 
+    function hola (a){
+        console.log("no puedo creer que esto salga")
+        if (cargaLista){
+            console.log("entro")
+        }
+    }
+
     function corrida(){
         eliminacionInicial();
-        cargaFalsa1();
-        console.log(cargaLista)
-        if(cargaLista){
-            console.log("hola")
-        }  
+        hola(cargaFalsa1());
+       
     }
 
     corrida();
