@@ -36,7 +36,7 @@ function iniciarJuego(){
         
     /* Cambio de escena */ 
 
-    /* Carga falsa */
+    /* Carga falsa 
         function cargaFalsa1(){
             setTimeout(function(){
                 barraCarga.innerHTML = "Cargando recursos del juego";
@@ -67,16 +67,44 @@ function iniciarJuego(){
         }
     /* Carga falsa */
 
-    function hola (a){
-        console.log("no puedo creer que esto salga")
+    function sleep(ms){
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function cargaFalsa1(){
+        barraCarga.innerHTML = "Cargando recursos del juego";
+        await sleep(1000);
+        barraCarga.innerHTML = "Seguimos cargando recursos";
+        await sleep(1000);
+        barraCarga.innerHTML = "Falta poco";
+        await sleep(1000);
+        barraCarga.innerHTML = "Sabes que no estamos cargando nada ¿verdad?";
+        await sleep(1000);
+        barraCarga.innerHTML = "Ya pues dejemos la tonteria, ahora si";
+        await sleep(1000);
+        iconoCarga.setAttribute("src","src/img/carga.gif")
+        barraCarga.setAttribute("class","salida")
+        await sleep(1000);
+        contenedorPantallaCarga.remove();
+        contenedorBody.appendChild(contenedorEscenaInicial)
+        cargaLista = true;
+        console.log("Ya soy true");
+    }
+
+    function epale (a, b){
         if (cargaLista){
-            console.log("entro")
+            console.log("esto")
+        }else{
+            console.log("no funciona")
         }
     }
 
+
+
     function corrida(){
         eliminacionInicial();
-        hola(cargaFalsa1());
+        epale(cargaFalsa1,cargaLista)
+        
        
     }
 
