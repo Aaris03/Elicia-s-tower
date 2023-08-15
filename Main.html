@@ -13,99 +13,86 @@
             <h1 id="barraCarga">Estamos cargando el juego "supuetamente"</h1>
         </div>
     </div>
-    <div id="escenaInicioJuego" class="flex-container">
-
-    </div>
-    <div id="estadisticasPersonaje" class="flex-container" style="display: none;">
-        <div class="row">
-            <div class="col">
-                <p>Estadisticas del personaje</p>
-            </div>
-            <div class="col">
-                <p>Niveles disponibles <Span id="nivelesDisponibles">Cantidad</Span></p>
-            </div>
-            <div class="col botonRestablecer">
-            </div>
-            <div class="col botonSeleccionaEnemigo">
-            </div>
-        </div> 
-        <div class="row">
-            <div class="col">
-                <p >nivel <span id="nivelPersonaje"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p >Ataque <span id="ataquePersonaje"></span></p>
-            </div>
-            <div id="cajaBtnAumentoAtaque" class="col">
-                <button id="aumentoAtaque">+</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p >Defensa <span id="defensaPersonaje"></span></p>
-            </div>
-            <div id="cajaBtnAumentoDefensa" class="col">
-                <button id="aumentoDefensa">+</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p >Vida <span id="vidaPersonaje"></span></p>
-            </div>
-            <div id="cajaBtnAumentoVida" class="col">
-                <button id="aumentoVida">+</button>
-            </div>
-        </div>
-    </div>
-    <div id="seleccionEnemigo" class="flex-container"style="display: none;">
+    <div id="escenaPrincipal">
         <div>
-            <h1 class="center">Selecciona a tu enemigo</h1>
+            <h1>Elicias's tower</h1>
+            <h2>Coliseum - prototype</h2>
         </div>
-        <div id="seleccionEnemigos" class="flex-container">
-            <div class="hoverEnemigo">
-                <div class="">
-                    <p class="center">Hechicero</p>
+        <div id="estadisticasPersonaje">
+            <div class="row">
+                <div class="col">
+                    <p>Estadisticas del personaje</p>
                 </div>
-                <div class="">
+                <div class="col">
+                    <p>Niveles disponibles <Span id="nivelesDisponibles">Cantidad</Span></p>
+                </div>
+                <div class="col botonRestablecer">
+                </div>
+                <div class="col botonSeleccionaEnemigo">
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col">
+                    <p >nivel <span id="nivelPersonaje"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p >Ataque <span id="ataquePersonaje"></span></p>
+                </div>
+                <div id="cajaBtnAumentoAtaque" class="col">
+                    <button id="aumentoAtaque">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p >Defensa <span id="defensaPersonaje"></span></p>
+                </div>
+                <div id="cajaBtnAumentoDefensa" class="col">
+                    <button id="aumentoDefensa">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p >Vida <span id="vidaPersonaje"></span></p>
+                </div>
+                <div id="cajaBtnAumentoVida" class="col">
+                    <button id="aumentoVida">+</button>
+                </div>
+            </div>
+        </div>
+        <div id="seleccionEnemigo">
+            <div>
+                <h1 class="center">Selecciona a tu enemigo</h1>
+            </div>
+            <div id="seleccionEnemigos" class="flex-container">
+                <div id="hechicero" class="hoverEnemigo" alt="Hechicero">
+                    <p class="center" alt="hechicero">Hechicero</p>
                     <img src="src/img/mage.png" alt="hechicero">
+                    <p alt="hechicero">Estudiantes de las artes negreras listos para lanzar hechizos racistas a sus enemigos esclavos</p>
                 </div>
-                <div class="">
-                    <p>Estudiantes de las artes negreras listos para lanzar hechizos racistas a sus enemigos esclavos</p>
+                <div id="guerrero" class="hoverEnemigo">
+                    <p class="center" alt="guerrero">Guerrero</p>
+                    <img src="src/img/guerrero.png" alt="guerrero">
+                    <p alt="guerrero">Fortalecidos por el pepino rigido y curtido en el arte del aguante, si entiendes a que me refiero</p>
                 </div>
-            </div>
-            <div class="col-4 hoverEnemigo">
-                <div class="row">
-                    <p class="center">Guerrero</p>
-                </div>
-                <div class="row">
-                    <img src="src/img/guerrero.png" alt="hechicero">
-                </div>
-                <div class="row">
-                    <p>Fortalecidos por el pepino rigido y curtido en el arte del aguante, si entiendes a que me refiero</p>
+                <div id="ninja" class="hoverEnemigo">
+                    <p class="center" alt="ninja">Ninja</p>
+                    <img src="src/img/ninja.png" alt="ninja">
+                    <p alt="ninja">Adoptados por la luna como sus perras, estos duelistas agiles, reciben constantemente la frase "¿ya esta dentro?"</p>
                 </div>
             </div>
-            <div class="col-4 hoverEnemigo">
-                <div class="row">
-                    <p class="center">Ninja</p>
-                </div>
-                <div class="row">
-                    <img src="src/img/ninja.png" alt="hechicero">
-                </div>
-                <div class="row">
-                    <p>Adoptados por la luna como sus perras, estos duelistas agiles, reciben constantemente la frase "¿ya esta dentro?"</p>
-                </div>
-            </div>
+            
         </div>
-        <div id="modalSeleccion" class="flex-container">
-            <div class="modalConfirmacion">
-                <h1>seleccionaste a <span>enemigo</span></h1>
-                <p>¿Estas seguro que quieres elegir a este enemigo para la lucha?</p>
-                <div>
-                    <button>Pelear!</button>
-                    <button>Elegir otro enemigo</button>
-                </div>
+    </div>
+    <div id="modal" class="flex-container">
+        <div class="modalConfirmacionEnemigo">
+            <h1>seleccionaste a <span id="enemigoSelec">enemigo</span></h1>
+            <p>¿Estas seguro que quieres elegir a este enemigo para la lucha?</p>
+            <img src="" alt="">
+            <div>
+                <button>Pelear!</button>
+                <button>Elegir otro enemigo</button>
             </div>
         </div>
     </div>
