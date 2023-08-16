@@ -14,7 +14,7 @@
         </div>
     </div>
     <div id="escenaPrincipal">
-        <div>
+        <div id="contenedorTitulo">
             <h1>Elicias's tower</h1>
             <h2>Coliseum - prototype</h2>
         </div>
@@ -68,7 +68,7 @@
             <div id="seleccionEnemigos" class="flex-container">
                 <div id="hechicero" class="hoverEnemigo" alt="Hechicero">
                     <p class="center" alt="hechicero">Hechicero</p>
-                    <img src="src/img/mage.png" alt="hechicero">
+                    <img src="src/img/hechicero.png" alt="hechicero">
                     <p alt="hechicero">Estudiantes de las artes negreras listos para lanzar hechizos racistas a sus enemigos esclavos</p>
                 </div>
                 <div id="guerrero" class="hoverEnemigo">
@@ -85,14 +85,38 @@
             
         </div>
     </div>
+    <div id="escenaCombate">
+        <div id="barraVidaPersonaje">
+            <div id="barraVidaMovilPersonaje"></div>
+            <p>100%</p>
+        </div>
+        <div id="personajeEstadisticas">
+            <p>Personaje</p>
+            <p>vida <span id="vidaPer"></span></p>
+            <p>ataque <span id="ataquePer"></span></p>
+            <p>defensa <span id="defensaPer"></span></p>
+        </div>
+        <div id="enemigoEstadisticas">
+            <p>Enemigo</p>
+            <p>vida <span id="vidaEne"></span></p>
+            <p>ataque <span id="ataqueEne"></span></p>
+            <p>defensa <span id="defensaEne"></span></p>
+        </div>
+        <img class="luchador" src="src/img/enemigo.webp" alt="enemigo">
+        <img class="luchador" src="src/img/personaje.webp" alt="personaje">
+        <div id="barraVidaEnemigo">
+            <div id="barraVidaMovil"></div>
+            <p>100%</p>
+        </div>
+    </div>
     <div id="modal" class="flex-container">
         <div class="modalConfirmacionEnemigo">
-            <h1>seleccionaste a <span id="enemigoSelec">enemigo</span></h1>
+            <h1>seleccionaste al <span id="enemigoSelec">enemigo</span></h1>
             <p>¿Estas seguro que quieres elegir a este enemigo para la lucha?</p>
-            <img src="" alt="">
+            <img id="imagenEnemigo" src="" alt="">
             <div>
-                <button>Pelear!</button>
-                <button>Elegir otro enemigo</button>
+                <button id="iniciarCombate">Pelear!</button>
+                <button id="cambiarEleccionEnemigo">Elegir otro enemigo</button>
             </div>
         </div>
     </div>

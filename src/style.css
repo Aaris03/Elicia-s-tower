@@ -68,3 +68,82 @@ p.center, h1.center{
     padding-right: 10px;
     text-align: center;
 }
+#imagenEnemigo{
+    height: 50vh;
+}
+#escenaCombate{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.luchador{
+    width: 200px;
+    height: 200px;
+}
+#barraVidaEnemigo {
+    position: absolute;
+    width: 50%;
+    background: #938f8f;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: -50%;
+    border: 3px solid #d0cfcf;
+    display: flex;
+}
+#barraVidaPersonaje {
+    position: absolute;
+    width: 20%;
+    background: #938f8f;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: -50%;
+    border: 3px solid #d0cfcf;
+    display: flex;
+    margin-right: 75%;
+}
+#barraVidaMovil {
+    width: calc(100% - 0%);
+    height: 20px;
+    background: #ce1111;
+    border-radius: 6px;
+    margin-left: 0px;
+}
+#barraVidaMovilPersonaje {
+    width: 100%;
+    height: 20px;
+    background: #ce1111;
+    border-radius: 6px;
+    margin-left: 0px;
+    transition: width 1s;
+}
+#barraVidaEnemigo p{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    width: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: calc(50% - 25px);
+    text-align: center;
+}
+#barraVidaPersonaje p{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    width: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: calc(50% - 25px);
+    text-align: center;
+}
+#personajeEstadisticas{
+    position: absolute;
+    margin-left: -80%;
+}
+#enemigoEstadisticas{
+    position: absolute;
+    margin-left: 80%;
+}
