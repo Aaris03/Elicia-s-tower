@@ -1,9 +1,9 @@
-/* Valores iniciales de enemigos y personaje jugable */
+/** Valores iniciales de enemigos y personaje jugable */
     enemigo = {
         ataque: 20,
         defensa: 30,
         vida: 300,
-        enfriamientoBase: 8000,
+        enfriamientoBase: 12000,
         probCritico: 3,
         critico: 0.4
     }
@@ -14,9 +14,8 @@
         vida: 100,
         nivelesDisponibles: 15
     }
-/* Valores iniciales de enemigos y personaje jugable */
 
-/* Variables globales de HTML*/
+/** Variables globales de HTML*/
     // Contenedores
         let contenedorBody;
         let contenedorPantallaCarga;
@@ -52,6 +51,7 @@
         let enemigoSeleccionado;
         let enemigoSeleccVisual;
         let scriptTag;
+        let vidaJugadorBarra;
     // Combate
         let enemigoEnfriamiento;
         let enemigoAtaqueListo = false;
@@ -63,9 +63,8 @@
         let vidaPersonajeBase;
     //Elementos graficos
         let barraVidaPersonaje;
-/* Variables globales de HTML*/
 
-/* Seleccion de elementos */
+/** Seleccion de elementos */
     contenedorPantallaCarga = document.querySelector("#pantallaCarga")
     contenedorSeleccionEnemigo = document.querySelector("#seleccionEnemigo");
     contenedorEstadisticasPersonaje = document.querySelector("#estadisticasPersonaje");
@@ -85,18 +84,18 @@
     contenedorCombate = document.getElementById("escenaCombate");
     barraVidaPersonaje = document.getElementById("barraVidaMovilPersonaje");
     scriptTag = document.querySelector("script");
-/* Seleccion de elementos */
+    vidaJugadorBarra = document.querySelector("#indicadorVidaJugador");
 
-/* Eventos de click */
+
+/** Eventos de click */
     botonAumentoAtaque.addEventListener("click", sumarAtaquePersonaje);
     botonAumentoDefensa.addEventListener("click", sumarDefensaPersonaje);
     botonAumentoVida.addEventListener("click", sumarVidaPersonaje);
     document.addEventListener("click",seleccionEnemigo);
     btnCambiarEnemigo.addEventListener("click",cambiarEnemigo)
     btnIniciarCombate.addEventListener("click",prepararEscenaCombate)
-/* Eventos de click */
 
-/* Cambio de escena */
+/* Cambio de escenas */
     // Se toman todos los contenedores o escenas principales; Se encapsulan en variables y se eliminan para ser llamadas cuando se necesite.
     function eliminacionInicial(){
         mostrarEstadisticasIniciales();
@@ -130,35 +129,45 @@
         document.getElementById("vidaEne").innerHTML = enemigo.vida;
         document.getElementById("ataqueEne").innerHTML = enemigo.ataque;
         document.getElementById("defensaEne").innerHTML = enemigo.defensa;
+        vidaPersonajeBase = personaje.vida
+        vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
         combate();
     }
-/* Cambio de escena */ 
 
-/* Numero random */
-    /* Devuelve un numero random unico entre 1 y un numero maximo pasado por parametros */
-    function numeroRandom (max){
-        return Math.floor(Math.random()* max)+1
-    }
-/* Numero random */
+/**
+ * Numero random 
+ * Devuelve un numero random unico entre 1 y un numero maximo
+ * @param {number} max - Numero maximo random que queremos obtener.
+ */
+function numeroRandom (max){
+    return Math.floor(Math.random()* max)+1
+}
 
-/* Numero random rango */
-    /* Devuelve un numero random en un rango, indicandole un parametro de minimo y maximo */
-    function numeroRamdomRango (max, min){
-        return Math.floor(Math.random()*(max-min)+min)
-    }
-/* Numero random rango */
+/**
+ * Numero random rango
+ * Devuelve un numero random en un rango, indicandole un parametro de minimo y maximo.
+ * @param {number} max - Numero maximo random que queremos obtener.
+ * @param {number} min - Numero minimo random que queremos obtener.
+ */
+function numeroRamdomRango (max, min){
+    return Math.floor(Math.random()*(max-min)+min)
+}
 
-/* Numero random exacto */
-    /* Devuelve un numero random en un rango, indicandole un parametro de minimo y maximo; Y el multiplo del cual este debe ser exacto */
-    function numeroRamdomRangoExacto (max, min, multiplo){
-        let numero = Math.floor(Math.random()*(max-min)+min)
+/**
+ * Numero random exacto 
+ * Devuelve un numero random en un rango, indicandole un parametro de minimo y maximo; Y el multiplo del cual este debe ser exacto.
+ * @param {number} max - Numero maximo random que queremos obtener.
+ * @param {number} min - Numero minimo random que queremos obtener.
+ * @param {number} multiplo - Numero del cual queremos que el numero random sea multiplo
+ */
+function numeroRamdomRangoExacto (max, min, multiplo){
+    let numero = Math.floor(Math.random()*(max-min)+min)
 
-        return Math.ceil(numero/multiplo)*multiplo;
-    }
-/* Numero random exacto */
+    return Math.ceil(numero/multiplo)*multiplo;
+}
 
 /* Retardo */
-    function sleep(ms){
+    function duerme(ms){
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 /* Retardo */
@@ -167,18 +176,18 @@
     async function cargaFalsa1(tiempo,multiplo){
         cargaLista = false;
         barraCarga.innerHTML = "Cargando recursos del juego";
-        await sleep(numeroRamdomRangoExacto(1,tiempo,multiplo));
+        await duerme(numeroRamdomRangoExacto(1,tiempo,multiplo));
         barraCarga.innerHTML = "Seguimos cargando recursos";
-        await sleep(numeroRamdomRangoExacto(1,tiempo,multiplo));
+        await duerme(numeroRamdomRangoExacto(1,tiempo,multiplo));
         barraCarga.innerHTML = "Falta poco";
-        await sleep(numeroRamdomRangoExacto(1,tiempo,multiplo));
+        await duerme(numeroRamdomRangoExacto(1,tiempo,multiplo));
         barraCarga.innerHTML = "Sabes que no estamos cargando nada ¿verdad?";
-        await sleep(numeroRamdomRangoExacto(1,tiempo,multiplo));
+        await duerme(numeroRamdomRangoExacto(1,tiempo,multiplo));
         barraCarga.innerHTML = "Ya pues dejemos la tonteria, ahora si";
-        await sleep(numeroRamdomRangoExacto(1,tiempo,multiplo));
+        await duerme(numeroRamdomRangoExacto(1,tiempo,multiplo));
         iconoCarga.setAttribute("src","src/img/carga.gif")
         barraCarga.setAttribute("class","salida")
-        await sleep(2000);
+        await duerme(2000);
         cargaLista = true;
         return cargaLista;
     }
@@ -253,7 +262,7 @@
             let aumento = 0;
             if(personaje.nivelesDisponibles > 0){
                 if(multiplo(4, personaje.nivel)){
-                    aumento = numeroRamdomRango((8+aumentoExtra),(1+aumentoExtra))
+                    aumento = numeroRamdomRango((6+aumentoExtra),(1+aumentoExtra))
                     aumentoDefensa(aumento);
                     disparadorDeEventos()
                 }else{
@@ -380,7 +389,6 @@
             enemigoSeleccionado = e.target;
             if (enemigoSeleccionado.getAttribute("id") == "hechicero" || enemigoSeleccionado.getAttribute("id") == "guerrero" || enemigoSeleccionado.getAttribute("id") == "ninja"){
                 enemigoSeleccionado = enemigoSeleccionado.getAttribute("id");
-                console.log(enemigoSeleccionado);
                 contenedorBody.appendChild(modal);
                 document.getElementById("enemigoSelecc").innerHTML = enemigoSeleccionado;
                 document.getElementById("imagenEnemigo").setAttribute("src","src/img/"+enemigoSeleccionado+".png");
@@ -407,8 +415,8 @@
 
 /* */
     async function combate(){
-        vidaPersonajeBase = personaje.vida
-        while (personaje.vida > 0 ){
+        
+        while (personaje.vida > 1 ){
             console.log(personaje.vida)
             await ataqueEnemigoBaseCalculo();
             if (ataqueCritico(enemigo.probCritico)){
@@ -421,19 +429,15 @@
                 pintadoBarraPersonaje()
             }
         }
+        console.log("termino el combate")
     }
 /* */
 
 /* */
     function pintadoBarraPersonaje(){
-       /* console.log("--------------")
-        console.log(vidaPersonajeBase);
-        console.log(personajeVidaActual);
-        console.log(daño)
-        console.log("--------------")*/
         let valorBarra = (personajeVidaActual*100)/vidaPersonajeBase;
-        barraVidaPersonaje.setAttribute("width",valorBarra)
-        console.log(valorBarra)
+        barraVidaPersonaje.style.width = valorBarra+"%";
+        vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
     }
 /* */
 
@@ -465,9 +469,16 @@
 /* */
 /* */
     function calculoDeDañoPersonajeRecibido(a){
-        personajeVidaActual = personaje.vida - a
-        personaje.vida = personajeVidaActual;
-        document.getElementById("vidaPer").innerHTML = personaje.vida;
+        personajeVidaActual = personaje.vida - a;
+        if (personajeVidaActual < 0){
+            console.log("El daño es negativo, fue " + personaje.vida - a)
+            personajeVidaActual = 0;
+            personaje.vida = 0;
+            document.getElementById("vidaPer").innerHTML = personaje.vida;
+        }else{
+            personaje.vida = personajeVidaActual;
+            document.getElementById("vidaPer").innerHTML = personaje.vida;
+        }
     }
 /* */
 
@@ -485,7 +496,7 @@
 /* */
 /* */
     async function ataqueEnemigoBaseCalculo(a){
-        await sleep(enemigo.enfriamientoBase);
+        await duerme(enemigo.enfriamientoBase);
         ataqueEnemigo = enemigo.ataque - personaje.defensa;
         console.log("El ataque fue de "+ ataqueEnemigo);
     }
