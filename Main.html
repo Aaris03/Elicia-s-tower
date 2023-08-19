@@ -15,50 +15,40 @@
     </div>
     <div id="escenaPrincipal">
         <div id="contenedorTitulo">
-            <h1>Elicias's tower</h1>
+            <h1>Elicia's tower</h1>
             <h2>Coliseum - prototype</h2>
         </div>
         <div id="estadisticasPersonaje">
-            <div class="row">
-                <div class="col">
-                    <p>Estadisticas del personaje</p>
-                </div>
-                <div class="col">
-                    <p>Niveles disponibles <Span id="nivelesDisponibles">Cantidad</Span></p>
-                </div>
-                <div class="col botonRestablecer">
-                </div>
-                <div class="col botonSeleccionaEnemigo">
-                </div>
+            <p>Estadisticas del personaje</p>
+            <div class="minicajaEstadisticas">
+                <p>Niveles disponibles <Span id="nivelesDisponibles">Cantidad</Span></p>
+                <div id="cajasBtnRestablecer">
+                    <div class="col botonRestablecer">
+                    </div>
+                </div> 
             </div> 
-            <div class="row">
-                <div class="col">
-                    <p >nivel <span id="nivelPersonaje"></span></p>
-                </div>
+            <div>
+                <p>nivel <span id="nivelPersonaje"></span></p>
             </div>
-            <div class="row">
-                <div class="col">
-                    <p >Ataque <span id="ataquePersonaje"></span></p>
-                </div>
+            <div class="minicajaEstadisticas">
+                <p >Ataque <span id="ataquePersonaje"></span></p>
                 <div id="cajaBtnAumentoAtaque" class="col">
                     <button id="aumentoAtaque">+</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <p >Defensa <span id="defensaPersonaje"></span></p>
-                </div>
+            <div class="minicajaEstadisticas">
+                <p >Defensa <span id="defensaPersonaje"></span></p>
                 <div id="cajaBtnAumentoDefensa" class="col">
                     <button id="aumentoDefensa">+</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <p >Vida <span id="vidaPersonaje"></span></p>
-                </div>
+            <div class="minicajaEstadisticas">
+                <p >Vida <span id="vidaPersonaje"></span></p>
                 <div id="cajaBtnAumentoVida" class="col">
                     <button id="aumentoVida">+</button>
                 </div>
+            </div>
+            <div class="col botonSeleccionaEnemigo">
             </div>
         </div>
         <div id="seleccionEnemigo">
@@ -86,27 +76,30 @@
         </div>
     </div>
     <div id="escenaCombate">
-        <div id="barraVidaPersonaje">
+        <div id="barraVidaPersonaje" class="barra">
             <div id="barraVidaMovilPersonaje"></div>
             <p id="indicadorVidaJugador">100%</p>
         </div>
-        <div id="personajeEstadisticas">
+        <div id="personajeEstadisticas" style="display: none;">
             <p>Personaje</p>
             <p>vida <span id="vidaPer"></span></p>
             <p>ataque <span id="ataquePer"></span></p>
             <p>defensa <span id="defensaPer"></span></p>
         </div>
-        <div id="enemigoEstadisticas">
+        <div id="enemigoEstadisticas" style="display: none;">
             <p>Enemigo</p>
             <p>vida <span id="vidaEne"></span></p>
             <p>ataque <span id="ataqueEne"></span></p>
             <p>defensa <span id="defensaEne"></span></p>
         </div>
-        <img class="luchador" src="src/img/enemigo.webp" alt="enemigo">
-        <img class="luchador" src="src/img/personaje.webp" alt="personaje">
-        <div id="barraVidaEnemigo">
+        <img class="enemigoAvatar" src="src/img/enemigo.webp" alt="enemigo">
+        <img class="jugadorAvatar" src="src/img/personaje.webp" alt="personaje">
+        <div id="barraVidaEnemigo" class="barra">
             <div id="barraVidaMovil"></div>
-            <p>100%</p>
+            <p id="indicadorVidaEnemigo">100%</p>
+        </div>
+        <div id="btnAtaqueJugador">
+            <button id="btnAtaque" disabled><img src="src/img/espada.png" alt="espadaIcono"></button>
         </div>
     </div>
     <div id="modal" class="flex-container">

@@ -79,65 +79,41 @@ p.center, h1.center{
     justify-content: space-around;
     align-items: center;
 }
-.luchador{
-    width: 200px;
-    height: 200px;
-}
-#barraVidaEnemigo {
+.barra{
     position: absolute;
-    width: 50%;
     background: #938f8f;
-    height: 20px;
-    border-radius: 10px;
-    margin-bottom: -50%;
-    border: 3px solid #d0cfcf;
+    height: 15px;
     display: flex;
 }
 #barraVidaPersonaje {
-    position: absolute;
-    width: 20%;
-    background: #938f8f;
-    height: 20px;
-    border-radius: 10px;
-    margin-top: -50%;
-    border: 3px solid #d0cfcf;
-    display: flex;
-    margin-right: 75%;
+    width: 30%;
+    bottom: 5%;
+}
+#barraVidaEnemigo {
+    width: 100%;
+    top: 0%;
+    left: 0%;
 }
 #barraVidaMovil {
-    width: calc(100% - 0%);
-    height: 20px;
-    background: #ce1111;
-    border-radius: 6px;
-    margin-left: 0px;
-}
-#barraVidaMovilPersonaje {
     width: 100%;
-    height: 20px;
     background: #ce1111;
-    border-radius: 6px;
     margin-left: 0px;
     transition: width 1s;
 }
-#barraVidaEnemigo p{
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    width: 50px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: calc(50% - 25px);
-    text-align: center;
+#barraVidaMovilPersonaje {
+    width: 100%;
+    background: #ce1111;
+    margin-left: 0px;
+    transition: width 1s;
 }
-#barraVidaPersonaje p{
+.barra p {
     position: absolute;
     color: white;
     font-weight: bold;
-    width: 50px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: calc(50% - 25px);
+    width: 100px;
+    margin: 1px calc(50% - 50px);
     text-align: center;
+    font-size: 0.75em;
 }
 #personajeEstadisticas{
     position: absolute;
@@ -146,4 +122,58 @@ p.center, h1.center{
 #enemigoEstadisticas{
     position: absolute;
     margin-left: 80%;
+}
+#btnAtaqueJugador{
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    background: #bebec7;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#btnAtaqueJugador button{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border-color: #d3d3eb;
+}
+#btnAtaqueJugador button img{
+    width: 70%;
+    height: 70%;
+}
+.enemigoAvatar{
+    width: 200px;
+    height: 200px;
+    top: 5%;
+    left: 60%;
+    position: absolute;
+}
+.jugadorAvatar{
+    width: 180px;
+    height: 180px;
+    bottom: 15%;
+    left: calc(25% - 75px);
+    position: absolute;
+}
+#iconoCarga{
+    width: 15%;
+}
+#escenaPrincipal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.minicajaEstadisticas{
+    display: flex;
+    align-items: center;
+}
+#estadisticasPersonaje p{
+    margin: 5px 0px;
+}
+#estadisticasPersonaje button{
+    margin: 0px 10px;
 }

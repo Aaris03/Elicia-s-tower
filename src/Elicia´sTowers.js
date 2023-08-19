@@ -1,7 +1,7 @@
 /** Valores iniciales de enemigos y personaje jugable */
     enemigo = {
-        ataque: 20,
-        defensa: 30,
+        ataque: 30,
+        defensa: 20,
         vida: 300,
         enfriamientoBase: 12000,
         probCritico: 3,
@@ -12,88 +12,106 @@
         ataque: 1,
         defensa: 1,
         vida: 100,
-        nivelesDisponibles: 15
+        nivelesDisponibles: 15,
+        enfriamientoBase: 5000
     }
 
-/** Variables globales de HTML*/
-    // Contenedores
-        let contenedorBody;
-        let contenedorPantallaCarga;
-        let contenedorSeleccionEnemigo;
-        let contenedorSeleccionEnemigoEncendido = false;
-        let contenedorEstadisticasPersonaje;
-        let contenedorEscenaInicial;
-        let contenedorEstadisticasPersonajeEncendido = true;
-        let contenedorBotonSeleccionEnemigo;
-        let modal;
-        let contenedorCombate;
-    // Botones
-        let botonEscenaEstadSelectEnemigo;
-        let botonAumentoAtaque;
-        let botonAumentoDefensa;
-        let botonAumentoVida;
-        let botonRestrablecerEncedido = false;
-        let botonRestablecer;
-        let botonSeleccionaEnemigoEncendido = false;
-        let botonSeleccionaEnemigo;   
-        let botonNuevoSeleccion; 
-        let btnUpAtaque; 
-        let btnUpDefensa;
-        let btnUpVida;
-        let btnCambiarEnemigo;
-        let btnIniciarCombate;
-    // Texto
-        let barraCarga;
-    // Auxiliares
-        let aumentoExtra = 0;
-        let cargaLista = false;
-        let nivelPersonajeVisual;
-        let enemigoSeleccionado;
-        let enemigoSeleccVisual;
-        let scriptTag;
-        let vidaJugadorBarra;
-    // Combate
-        let enemigoEnfriamiento;
-        let enemigoAtaqueListo = false;
-        let ataqueEnemigo;
-        let personajeVidaActual;
-        let golpeCriticoEnemigo;
-        let dañoAjustadoEnemigo;
-        let daño;
-        let vidaPersonajeBase;
-    //Elementos graficos
-        let barraVidaPersonaje;
+/**
+ * Variables globales de HTML
+ */
+// Contenedores
+    let contenedorBody;
+    let contenedorPantallaCarga;
+    let contenedorSeleccionEnemigo;
+    let contenedorSeleccionEnemigoEncendido = false;
+    let contenedorEstadisticasPersonaje;
+    let contenedorEscenaInicial;
+    let contenedorEstadisticasPersonajeEncendido = true;
+    let contenedorBotonSeleccionEnemigo;
+    let modal;
+    let contenedorCombate;
+    let ContenedorbtnAtaqueBasicoJugador;
+// Botones
+    let botonEscenaEstadSelectEnemigo;
+    let botonAumentoAtaque;
+    let botonAumentoDefensa;
+    let botonAumentoVida;
+    let botonRestrablecerEncedido = false;
+    let botonRestablecer;
+    let botonSeleccionaEnemigoEncendido = false;
+    let botonSeleccionaEnemigo;   
+    let botonNuevoSeleccion; 
+    let btnUpAtaque; 
+    let btnUpDefensa;
+    let btnUpVida;
+    let btnCambiarEnemigo;
+    let btnIniciarCombate;
+    let btnAtaqueBasicoJugador;
+// Texto
+    let barraCarga;
+// Auxiliares
+    let aumentoExtra = 0;
+    let cargaLista = false;
+    let nivelPersonajeVisual;
+    let enemigoSeleccionado;
+    let enemigoSeleccVisual;
+    let scriptTag;
+    let vidaJugadorBarra;
+    let freno;
+// Combate
+    let enemigoEnfriamiento;
+    let enemigoAtaqueListo = false;
+    let ataqueEnemigo;
+    let personajeVidaActual;
+    let enemigoVidaActual;
+    let golpeCriticoEnemigo;
+    let dañoAjustadoEnemigo;
+    let dañoEnemigo;
+    let dañoJugador;
+    let vidaPersonajeBase;
+    let personajeListo = false;
+    let personajeAunNoAtaca = true;
+//Elementos graficos
+    let barraVidaPersonaje;
+    let barraVidaEnemigo;
 
-/** Seleccion de elementos */
-    contenedorPantallaCarga = document.querySelector("#pantallaCarga")
-    contenedorSeleccionEnemigo = document.querySelector("#seleccionEnemigo");
-    contenedorEstadisticasPersonaje = document.querySelector("#estadisticasPersonaje");
-    barraCarga = document.querySelector("#barraCarga");
-    iconoCarga = document.querySelector("#iconoCarga");
-    contenedorEscenaPrincipal = document.querySelector("#escenaPrincipal");
-    contenedorBody = document.querySelector("body");
-    botonAumentoAtaque = document.getElementById("aumentoAtaque");
-    botonAumentoDefensa = document.getElementById("aumentoDefensa");
-    botonAumentoVida = document.getElementById("aumentoVida");
-    btnUpAtaque = document.getElementById("cajaBtnAumentoAtaque");
-    btnUpDefensa = document.getElementById("cajaBtnAumentoDefensa");
-    btnUpVida = document.getElementById("cajaBtnAumentoVida");
-    modal = document.getElementById("modal");
-    btnCambiarEnemigo = document.getElementById("cambiarEleccionEnemigo");
-    btnIniciarCombate = document.getElementById("iniciarCombate");
-    contenedorCombate = document.getElementById("escenaCombate");
-    barraVidaPersonaje = document.getElementById("barraVidaMovilPersonaje");
-    scriptTag = document.querySelector("script");
-    vidaJugadorBarra = document.querySelector("#indicadorVidaJugador");
-
-
-/** Eventos de click */
-    botonAumentoAtaque.addEventListener("click", sumarAtaquePersonaje);
-    botonAumentoDefensa.addEventListener("click", sumarDefensaPersonaje);
-    botonAumentoVida.addEventListener("click", sumarVidaPersonaje);
-    document.addEventListener("click",seleccionEnemigo);
-    btnCambiarEnemigo.addEventListener("click",cambiarEnemigo)
-    btnIniciarCombate.addEventListener("click",prepararEscenaCombate)
+/**
+ *  Seleccion de elementos
+ */ 
+contenedorPantallaCarga = document.querySelector("#pantallaCarga")
+contenedorSeleccionEnemigo = document.querySelector("#seleccionEnemigo");
+contenedorEstadisticasPersonaje = document.querySelector("#estadisticasPersonaje");
+barraCarga = document.querySelector("#barraCarga");
+iconoCarga = document.querySelector("#iconoCarga");
+contenedorEscenaPrincipal = document.querySelector("#escenaPrincipal");
+contenedorBody = document.querySelector("body");
+botonAumentoAtaque = document.getElementById("aumentoAtaque");
+botonAumentoDefensa = document.getElementById("aumentoDefensa");
+botonAumentoVida = document.getElementById("aumentoVida");
+btnUpAtaque = document.getElementById("cajaBtnAumentoAtaque");
+btnUpDefensa = document.getElementById("cajaBtnAumentoDefensa");
+btnUpVida = document.getElementById("cajaBtnAumentoVida");
+modal = document.getElementById("modal");
+btnCambiarEnemigo = document.getElementById("cambiarEleccionEnemigo");
+btnIniciarCombate = document.getElementById("iniciarCombate");
+contenedorCombate = document.getElementById("escenaCombate");
+barraVidaPersonaje = document.getElementById("barraVidaMovilPersonaje");
+barraVidaEnemigo = document.getElementById("barraVidaMovil");
+scriptTag = document.querySelector("script");
+vidaJugadorBarra = document.querySelector("#indicadorVidaJugador");
+vidaEnemigoBarra = document.querySelector("#indicadorVidaEnemigo");
+ContenedorbtnAtaqueBasicoJugador = document.getElementById("btnAtaqueJugador");
+btnAtaqueBasicoJugador = document.getElementById("btnAtaque");
+/**
+ * Eventos de click
+ */
+botonAumentoAtaque.addEventListener("click", sumarAtaquePersonaje);
+botonAumentoDefensa.addEventListener("click", sumarDefensaPersonaje);
+botonAumentoVida.addEventListener("click", sumarVidaPersonaje);
+document.addEventListener("click",seleccionEnemigo);
+btnCambiarEnemigo.addEventListener("click",cambiarEnemigo);
+btnIniciarCombate.addEventListener("click",prepararEscenaCombate);
+btnAtaqueBasicoJugador.addEventListener("click", ataqueBasicoJugador);
 
 /* Cambio de escenas */
     // Se toman todos los contenedores o escenas principales; Se encapsulan en variables y se eliminan para ser llamadas cuando se necesite.
@@ -129,9 +147,12 @@
         document.getElementById("vidaEne").innerHTML = enemigo.vida;
         document.getElementById("ataqueEne").innerHTML = enemigo.ataque;
         document.getElementById("defensaEne").innerHTML = enemigo.defensa;
-        vidaPersonajeBase = personaje.vida
-        vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
-        combate();
+        vidaPersonajeBase = personaje.vida;
+        enemigoVidaActual = enemigo.vida;
+        vidaJugadorBarra.innerHTML = personaje.vida + " / " + vidaPersonajeBase;
+        vidaEnemigoBarra.innerHTML = enemigoVidaActual + " / " + enemigo.vida;
+        combateEnemigo();
+        combateJugador();
     }
 
 /**
@@ -168,7 +189,7 @@ function numeroRamdomRangoExacto (max, min, multiplo){
 
 /* Retardo */
     function duerme(ms){
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return freno = new Promise(resolve => setTimeout(resolve, ms));
     }
 /* Retardo */
 
@@ -262,7 +283,7 @@ function numeroRamdomRangoExacto (max, min, multiplo){
             let aumento = 0;
             if(personaje.nivelesDisponibles > 0){
                 if(multiplo(4, personaje.nivel)){
-                    aumento = numeroRamdomRango((6+aumentoExtra),(1+aumentoExtra))
+                    aumento = numeroRamdomRango((4+aumentoExtra),(1+aumentoExtra))
                     aumentoDefensa(aumento);
                     disparadorDeEventos()
                 }else{
@@ -352,155 +373,234 @@ function numeroRamdomRangoExacto (max, min, multiplo){
     }
 /* Se añade el boton para elegir enemigo una vez que se hayan gastado todos lo niveles disponibles */
 
-/* Restablecimiento de los valores iniciales en la seleccion de estadisticas */
-    function restablecerValores(){
-        personaje.ataque = 1
-        personaje.defensa = 1
-        personaje.nivel = 1
-        personaje.vida = 100
-        personaje.nivelesDisponibles = 15
+/**
+ * Restablecimiento de los valores iniciales en la seleccion de estadisticas
+ * Todos los valores involucrados vuelven a sus valores base
+ */
+function restablecerValores(){
+    personaje.ataque = 1
+    personaje.defensa = 1
+    personaje.nivel = 1
+    personaje.vida = 100
+    personaje.nivelesDisponibles = 15
 
-        aumentoExtra = 0;
+    aumentoExtra = 0;
+
+    botonRestablecer.remove();
+    if (botonSeleccionaEnemigoEncendido == true){
+        botonSeleccionaEnemigo.remove();
+        botonSeleccionaEnemigoEncendido = false;
+    }   
+
+    botonRestrablecerEncedido = false;
     
-        botonRestablecer.remove();
-        if (botonSeleccionaEnemigoEncendido == true){
-            botonSeleccionaEnemigo.remove();
-            botonSeleccionaEnemigoEncendido = false;
-        }   
-    
-        botonRestrablecerEncedido = false;
-        
-        mostrarEstadisticasIniciales();
-        añadirBtnAumento ();
-    }
-/* Restablecimiento de los valores iniciales en la seleccion de estadisticas */
+    mostrarEstadisticasIniciales();
+    añadirBtnAumento ();
+}
 
-/* Se añaden los botones de aumento de estadisticas */
-    function añadirBtnAumento (){
-        btnUpAtaque.appendChild(botonAumentoAtaque)
-        btnUpDefensa.appendChild(botonAumentoDefensa)
-        btnUpVida.appendChild(botonAumentoVida)
-    }  
-/* Se añaden los botones de aumento de estadisticas */
+/**
+ * Se añaden los botones de aumento de estadisticas
+ */
+function añadirBtnAumento (){
+    btnUpAtaque.appendChild(botonAumentoAtaque);
+    btnUpDefensa.appendChild(botonAumentoDefensa);
+    btnUpVida.appendChild(botonAumentoVida);
+}  
 
-/* Deteccion de seleccion de enemigo */
-    function seleccionEnemigo (e){
-        if (contenedorSeleccionEnemigoEncendido){
-            enemigoSeleccionado = e.target;
-            if (enemigoSeleccionado.getAttribute("id") == "hechicero" || enemigoSeleccionado.getAttribute("id") == "guerrero" || enemigoSeleccionado.getAttribute("id") == "ninja"){
-                enemigoSeleccionado = enemigoSeleccionado.getAttribute("id");
+/**
+ * Deteccion de seleccion de enemigo
+ * La funcion toma el evento click y lo evalua para saber que fue lo que se clickeo.
+ * Y asi poder determinar que ememigo fue elegido.
+ * @param {*} e - Elemento clickeado en x momento
+ */
+function seleccionEnemigo (e){
+    if (contenedorSeleccionEnemigoEncendido){
+        enemigoSeleccionado = e.target;
+        if (enemigoSeleccionado.getAttribute("id") == "hechicero" || enemigoSeleccionado.getAttribute("id") == "guerrero" || enemigoSeleccionado.getAttribute("id") == "ninja"){
+            enemigoSeleccionado = enemigoSeleccionado.getAttribute("id");
+            contenedorBody.appendChild(modal);
+            document.getElementById("enemigoSelecc").innerHTML = enemigoSeleccionado;
+            document.getElementById("imagenEnemigo").setAttribute("src","src/img/"+enemigoSeleccionado+".png");
+        }else{ 
+            if(enemigoSeleccionado.getAttribute("alt") == "hechicero" || enemigoSeleccionado.getAttribute("alt") == "guerrero" || enemigoSeleccionado.getAttribute("alt") == "ninja"){
+                enemigoSeleccionado = enemigoSeleccionado.getAttribute("alt");
                 contenedorBody.appendChild(modal);
-                document.getElementById("enemigoSelecc").innerHTML = enemigoSeleccionado;
+                document.getElementById("enemigoSelec").innerHTML = enemigoSeleccionado;
                 document.getElementById("imagenEnemigo").setAttribute("src","src/img/"+enemigoSeleccionado+".png");
-            }else{ 
-                if(enemigoSeleccionado.getAttribute("alt") == "hechicero" || enemigoSeleccionado.getAttribute("alt") == "guerrero" || enemigoSeleccionado.getAttribute("alt") == "ninja"){
-                    enemigoSeleccionado = enemigoSeleccionado.getAttribute("alt");
-                    contenedorBody.appendChild(modal);
-                    document.getElementById("enemigoSelec").innerHTML = enemigoSeleccionado;
-                    document.getElementById("imagenEnemigo").setAttribute("src","src/img/"+enemigoSeleccionado+".png");
-                }else{
-                    enemigoSeleccionado = null;
-                }
-            }
-        }   
-    }
-/* Deteccion de seleccion de enemigo */
-
-/* Cambiar enemigo seleccionado */
-    function cambiarEnemigo(){
-        modal.remove();
-        enemigoSeleccionado = null;
-    }
-/* Cambiar enemigo seleccionado */
-
-/* */
-    async function combate(){
-        
-        while (personaje.vida > 1 ){
-            console.log(personaje.vida)
-            await ataqueEnemigoBaseCalculo();
-            if (ataqueCritico(enemigo.probCritico)){
-                ataqueEnemigoCritico();
-                console.log(daño)
-                pintadoBarraPersonaje()
             }else{
-                ataqueEnemigoBase();
-                console.log(daño)
-                pintadoBarraPersonaje()
+                enemigoSeleccionado = null;
             }
         }
-        console.log("termino el combate")
-    }
-/* */
+    }   
+}
+
+/**
+ * Cambiar enemigo seleccionado
+ * Esta funcion cierra el modal de seleccion y vacia la seleccion previa
+ */ 
+function cambiarEnemigo(){
+    modal.remove();
+    enemigoSeleccionado = null;
+}
 
 /* */
-    function pintadoBarraPersonaje(){
-        let valorBarra = (personajeVidaActual*100)/vidaPersonajeBase;
-        barraVidaPersonaje.style.width = valorBarra+"%";
-        vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
-    }
-/* */
-
-/* */
-    function ataqueCritico(critico){
-        let probCritico = numeroRamdomRango (10, 1);
-        if(probCritico <= critico){
-            console.log("fue critico")
-            if (personaje.defensa > 0){
-                personaje.defensa = personaje.defensa - 1
-                document.getElementById("defensaPer").innerHTML = personaje.defensa;
-            } 
-            return golpeCriticoEnemigo = true;
+async function combateEnemigo(){
+    while (personaje.vida > 1 && enemigoVidaActual > 1){
+        console.log(personaje.vida)
+        await ataqueEnemigoBaseCalculo();
+        if (ataqueCritico(enemigo.probCritico)){
+            ataqueEnemigoCritico();
+            console.log(dañoEnemigo)
+            pintadoBarraPersonaje()
         }else{
-            return golpeCriticoEnemigo = false;
+            ataqueEnemigoBase();
+            console.log(dañoEnemigo)
+            pintadoBarraPersonaje()
         }
     }
-/* */
+    console.log("termino el combate")
+}
 
-/* */
-    function dañoBaseVerficacion(ataque){
-        if (ataque <= 0){
-            dañoAjustadoEnemigo = enemigo.ataque/10
-            calculoDeDañoPersonajeRecibido(dañoAjustadoEnemigo);
-        }else{
-            calculoDeDañoPersonajeRecibido(ataque);
-        }
-    }
-/* */
-/* */
-    function calculoDeDañoPersonajeRecibido(a){
-        personajeVidaActual = personaje.vida - a;
-        if (personajeVidaActual < 0){
-            console.log("El daño es negativo, fue " + personaje.vida - a)
-            personajeVidaActual = 0;
-            personaje.vida = 0;
-            document.getElementById("vidaPer").innerHTML = personaje.vida;
-        }else{
-            personaje.vida = personajeVidaActual;
-            document.getElementById("vidaPer").innerHTML = personaje.vida;
-        }
-    }
-/* */
+/** 
+ * Calculo de ataque enemigo base
+ * Primero debe cumplirse el enfriamiento del enmigo para luego calcular el daño a hacer
+ */
+async function ataqueEnemigoBaseCalculo(){
+    await duerme(enemigo.enfriamientoBase);
+    ataqueEnemigo = enemigo.ataque - personaje.defensa;
+    console.log("El ataque fue de "+ ataqueEnemigo);
+}
 
-/* */
-    function ataqueEnemigoCritico(){
-        daño = (ataqueEnemigo +(Math.floor(ataqueEnemigo * enemigo.critico)))
-        dañoBaseVerficacion(daño); 
+/**
+ * Verificacion de ataque critico por parte del enemigo
+ * @param {number} critico - probabilidad de que se de un golpe critico
+ * @returns {boolean} retornara true si fue un golpe critico y false si no lo fue.
+ */
+function ataqueCritico(critico){
+    let probCritico = numeroRamdomRango (10, 1);
+    if(probCritico <= critico){
+        console.log("fue critico")
+        if (personaje.defensa > 0){
+            personaje.defensa = personaje.defensa - 1
+            document.getElementById("defensaPer").innerHTML = personaje.defensa;
+        } 
+        return golpeCriticoEnemigo = true;
+    }else{
+        return golpeCriticoEnemigo = false;
     }
-/* */
-/* */
-    function ataqueEnemigoBase(){
-        daño = ataqueEnemigo;
-        dañoBaseVerficacion(daño); 
+}
+
+/**
+ * Calculo de daño critico
+ * Es caso de que el ataque sea critico se calcula el mismo, 
+ * con el aumento critico del enemigo, para posteriormente,
+ * verificar dicho daño para que no sea un daño negativo.
+ */
+function ataqueEnemigoCritico(){
+    dañoEnemigo = (ataqueEnemigo +(Math.floor(ataqueEnemigo * enemigo.critico)))
+    dañoBaseVerficacion(dañoEnemigo); 
+}
+
+/**
+ * Ejecucion de un golpe basico
+ * Es caso de que el ataque no sea critico,
+ * se iguala el daño al ataque base calculado previamente,
+ * y se verifica que dicho daño no sea negativo.
+ */
+function ataqueEnemigoBase(){
+    dañoEnemigo = ataqueEnemigo;
+    dañoBaseVerficacion(dañoEnemigo); 
+}
+
+/**
+ * Verificacion del daño base
+ * Si el daño base a realizar es menor a cero este se iguala a 1
+ * @param {number} ataque - Daño obtenido de la resta del ataque base del enemigo menos la defensa del jugador.
+ */
+function dañoBaseVerficacion(ataque){
+    if (ataque <= 0){
+        //dañoAjustadoEnemigo = enemigo.ataque/10
+        dañoAjustadoEnemigo = 1;
+        calculoDeDañoPersonajeRecibido(dañoAjustadoEnemigo);
+    }else{
+        calculoDeDañoPersonajeRecibido(ataque);
     }
-/* */
-/* */
-    async function ataqueEnemigoBaseCalculo(a){
-        await duerme(enemigo.enfriamientoBase);
-        ataqueEnemigo = enemigo.ataque - personaje.defensa;
-        console.log("El ataque fue de "+ ataqueEnemigo);
+}
+
+/**
+ * Calculo final de daño a recibir
+ * Se recibe el daño final y se le resta a la vida del jugador.
+ * @param {number}  dañoFinal - Es el valor final en cuanto a daño que recibira el jugador.
+ */
+function calculoDeDañoPersonajeRecibido(dañoFinal){
+    personajeVidaActual = personaje.vida - dañoFinal;
+    if (personajeVidaActual < 0){
+        console.log("El daño es negativo, fue " + personaje.vida - dañoFinal)
+        personajeVidaActual = 0;
+        personaje.vida = 0;
+        document.getElementById("vidaPer").innerHTML = personaje.vida;
+    }else{
+        personaje.vida = personajeVidaActual;
+        document.getElementById("vidaPer").innerHTML = personaje.vida;
     }
-/* */
+}
+
+/**
+ * Pintado de barra del personaje
+ * Dependiendo de los valores actuales de la vida del personaje, la funcion va disminuyendo
+ * el width de la barra de vida
+ */
+function pintadoBarraPersonaje(){
+    let valorBarra = (personajeVidaActual*100)/vidaPersonajeBase;
+    barraVidaPersonaje.style.width = valorBarra+"%";
+    vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
+}
+
+/**
+ * 
+ */
+async function ataqueBasicoJugador(){
+    dañoJugador = personaje.ataque - enemigo.defensa;
+    if(dañoJugador<0){
+        dañoJugador = 1;
+    }
+    enemigoVidaActual = enemigoVidaActual - dañoJugador;
+    if(enemigoVidaActual<0){
+        enemigoVidaActual = 0;
+        clearTimeout(freno);
+        console.log("se freno")
+    }
+    console.log("El jugador hizo " + dañoJugador + " de daño");
+    pintadoBarraEnemigo();
+    personajeAunNoAtaca = true;
+    btnAtaqueBasicoJugador.setAttribute("disabled", "");
+    jugadorListoParaAtacar();
+}   
+
+/** 
+ * 
+*/
+function pintadoBarraEnemigo(){
+    console.log(enemigoVidaActual + "hello hello")
+    let valorBarra = (enemigoVidaActual*100)/enemigo.vida;
+    barraVidaEnemigo.style.width = valorBarra+"%";
+    vidaEnemigoBarra.innerHTML = enemigoVidaActual + "/" + enemigo.vida;
+}
+
+/**
+ * 
+ */
+async function jugadorListoParaAtacar(){
+    await duerme(personaje.enfriamientoBase);
+    personajeListo = true;
+    btnAtaqueBasicoJugador.removeAttribute("disabled");
+    console.log("ataque listo");
+}
+
+async function combateJugador(){
+    jugadorListoParaAtacar();
+}
+
 async function iniciarJuego(){
 
     eliminacionInicial();
