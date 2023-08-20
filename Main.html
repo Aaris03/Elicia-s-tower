@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combate - Torre de elicia</title>
     <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="pantallaCarga" class="flex-container">
@@ -92,8 +96,18 @@
             <p>ataque <span id="ataqueEne"></span></p>
             <p>defensa <span id="defensaEne"></span></p>
         </div>
-        <img class="enemigoAvatar" src="src/img/enemigo.webp" alt="enemigo">
-        <img class="jugadorAvatar" src="src/img/personaje.webp" alt="personaje">
+        <div >
+            <div id="dañoIndicador1">
+                <span id="indic1">-0</span>
+            </div>   
+            <img class="enemigoAvatar" src="src/img/enemigo.webp" alt="enemigo">
+        </div>
+        <div>
+            <div id="dañoIndicador2">
+                <span id="indic2">-0</span>
+            </div>
+            <img class="jugadorAvatar" src="src/img/personaje.webp" alt="personaje">
+        </div>
         <div id="barraVidaEnemigo" class="barra">
             <div id="barraVidaMovil"></div>
             <p id="indicadorVidaEnemigo">100%</p>

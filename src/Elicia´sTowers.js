@@ -69,11 +69,11 @@
     let dañoEnemigo;
     let dañoJugador;
     let vidaPersonajeBase;
-    let personajeListo = false;
-    let personajeAunNoAtaca = true;
+    let combateActivo = false;
 //Elementos graficos
     let barraVidaPersonaje;
     let barraVidaEnemigo;
+    let inidicadorDañoPersonaje;
 
 /**
  *  Seleccion de elementos
@@ -102,6 +102,7 @@ vidaJugadorBarra = document.querySelector("#indicadorVidaJugador");
 vidaEnemigoBarra = document.querySelector("#indicadorVidaEnemigo");
 ContenedorbtnAtaqueBasicoJugador = document.getElementById("btnAtaqueJugador");
 btnAtaqueBasicoJugador = document.getElementById("btnAtaque");
+indicadorDañoPersonaje = document.getElementById("indic2");
 /**
  * Eventos de click
  */
@@ -151,6 +152,7 @@ btnAtaqueBasicoJugador.addEventListener("click", ataqueBasicoJugador);
         enemigoVidaActual = enemigo.vida;
         vidaJugadorBarra.innerHTML = personaje.vida + " / " + vidaPersonajeBase;
         vidaEnemigoBarra.innerHTML = enemigoVidaActual + " / " + enemigo.vida;
+        combateActivo = true;
         combateEnemigo();
         combateJugador();
     }
@@ -189,7 +191,7 @@ function numeroRamdomRangoExacto (max, min, multiplo){
 
 /* Retardo */
     function duerme(ms){
-        return freno = new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 /* Retardo */
 
@@ -446,19 +448,22 @@ function cambiarEnemigo(){
 /* */
 async function combateEnemigo(){
     while (personaje.vida > 1 && enemigoVidaActual > 1){
-        console.log(personaje.vida)
         await ataqueEnemigoBaseCalculo();
-        if (ataqueCritico(enemigo.probCritico)){
-            ataqueEnemigoCritico();
-            console.log(dañoEnemigo)
-            pintadoBarraPersonaje()
+        if(combateActivo){
+            if (ataqueCritico(enemigo.probCritico)){
+                ataqueEnemigoCritico();
+                pintadoBarraPersonaje()
+            }else{
+                ataqueEnemigoBase();
+                pintadoBarraPersonaje()
+            }
         }else{
-            ataqueEnemigoBase();
-            console.log(dañoEnemigo)
-            pintadoBarraPersonaje()
+            break;
         }
+        
     }
     console.log("termino el combate")
+    btnAtaqueBasicoJugador.setAttribute("disabled", "");
 }
 
 /** 
@@ -468,7 +473,6 @@ async function combateEnemigo(){
 async function ataqueEnemigoBaseCalculo(){
     await duerme(enemigo.enfriamientoBase);
     ataqueEnemigo = enemigo.ataque - personaje.defensa;
-    console.log("El ataque fue de "+ ataqueEnemigo);
 }
 
 /**
@@ -535,7 +539,6 @@ function dañoBaseVerficacion(ataque){
 function calculoDeDañoPersonajeRecibido(dañoFinal){
     personajeVidaActual = personaje.vida - dañoFinal;
     if (personajeVidaActual < 0){
-        console.log("El daño es negativo, fue " + personaje.vida - dañoFinal)
         personajeVidaActual = 0;
         personaje.vida = 0;
         document.getElementById("vidaPer").innerHTML = personaje.vida;
@@ -554,6 +557,22 @@ function pintadoBarraPersonaje(){
     let valorBarra = (personajeVidaActual*100)/vidaPersonajeBase;
     barraVidaPersonaje.style.width = valorBarra+"%";
     vidaJugadorBarra.innerHTML = personaje.vida + "/" + vidaPersonajeBase;
+    pintadoDañoPersonaje();
+}
+
+/**
+ * Pintado de daño recibido por el jugador
+ */
+function pintadoDañoPersonaje(){
+    indicadorDañoPersonaje.className = "indic2";
+    if(dañoEnemigo > 0){
+        indicadorDañoPersonaje.innerHTML = `-${dañoEnemigo}`;
+    }else{
+        indicadorDañoPersonaje.innerHTML = `-${dañoAjustadoEnemigo}`; 
+    }
+    setTimeout(function(){
+        indicadorDañoPersonaje.classList.remove("indic2");
+    },3000)
 }
 
 /**
@@ -567,12 +586,10 @@ async function ataqueBasicoJugador(){
     enemigoVidaActual = enemigoVidaActual - dañoJugador;
     if(enemigoVidaActual<0){
         enemigoVidaActual = 0;
-        clearTimeout(freno);
-        console.log("se freno")
+        combateActivo = false;
     }
     console.log("El jugador hizo " + dañoJugador + " de daño");
     pintadoBarraEnemigo();
-    personajeAunNoAtaca = true;
     btnAtaqueBasicoJugador.setAttribute("disabled", "");
     jugadorListoParaAtacar();
 }   
@@ -581,7 +598,6 @@ async function ataqueBasicoJugador(){
  * 
 */
 function pintadoBarraEnemigo(){
-    console.log(enemigoVidaActual + "hello hello")
     let valorBarra = (enemigoVidaActual*100)/enemigo.vida;
     barraVidaEnemigo.style.width = valorBarra+"%";
     vidaEnemigoBarra.innerHTML = enemigoVidaActual + "/" + enemigo.vida;
@@ -592,7 +608,6 @@ function pintadoBarraEnemigo(){
  */
 async function jugadorListoParaAtacar(){
     await duerme(personaje.enfriamientoBase);
-    personajeListo = true;
     btnAtaqueBasicoJugador.removeAttribute("disabled");
     console.log("ataque listo");
 }
